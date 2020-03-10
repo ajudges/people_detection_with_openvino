@@ -1,4 +1,4 @@
-# People detection 
+# People detection on the Edge
 
 This solution is intended to be run on the edge and it detects the presence of people for certain actions to be carried out. It prints when people have been detected, together with the time when they are detected. It is meant to be run as an IoT solution for detecting people and activating events: such as the switching on of lights, opening doors etc. Hence it does not store nor display the images captured.
 
