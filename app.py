@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from inference import Network
 from _ast import Break
-
+from datetime import datetime
 
 INPUT_STREAM = "videoplayback.mp4"
 CPU_EXTENSION = "/opt/intel/openvino/deployment_tools/inference_engine/lib/intel64/libcpu_extension_sse4.so"
@@ -27,7 +27,7 @@ def get_args():
     
     # -- Create the argument
     required.add_argument("-m", help=m_desc, default='./model/person_model_88.xml',required = False)
-    optional.add_argument("-i", help=i_desc, default=INPUT_STREAM)
+    optional.add_argument("-i", help=i_desc, default=0) #default = 0 to read from camera
     optional.add_argument("-d", help=d_desc, default='CPU')
     optional.add_argument("-ct", help=ct_desc, default=0.5)
     args = parser.parse_args()
@@ -41,11 +41,13 @@ def inference_result(result, current_pos, args):
     '''
     Return when a person has been detected together with the time
     '''
-    seconds=int((current_pos//1000)%60)
+    time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    if args.i!=0:
+        time = int((current_pos//1000)%60)
     for people in result[0][0]: # Output shape is 1x1x100x7
         conf = people[2]
         if conf >= args.ct:
-            return "People detected", seconds
+            return "People detected", time
 
 
 
@@ -104,7 +106,7 @@ def capture_video(args):
             output = inference_result(people_result, current_pos, args)
             # Write out the frame
             print (output)
-            #return output
+            
         
         # Break if escape key pressed
         if key_pressed == 27:
