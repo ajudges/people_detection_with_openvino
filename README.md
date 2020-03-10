@@ -8,10 +8,18 @@ This solution makes use of a people's detection model which has been converted i
 
 ## Instructions
 
-From terminal/command line, run
+1. To capture from camera: On the terminal run
 
 ```
+python app.py
+```
+2. To capture from a video: On the terminal run
+```
 python app.py -i {location-of-video}
+```
+3. To change the confidence threshold, include the argument -ct {desired-threshold} e.g.
+```
+python app.py -ct {0.6}
 ```
 
 ## Gratitude
