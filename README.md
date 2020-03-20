@@ -5,6 +5,8 @@ This solution is intended to be run on the edge and it detects the presence of p
 ## Architecture
 This solution makes use of a people's detection model which has been converted into intermediate representation files, so as to enable fast performance and optimization on all Intel processors. It prints 'None' when it does not detect anyone; 'Persons Detected" and timestamp (from video it gives the current position of the video in seconds) when it detects people. The input stream can either be from the camera of the device or an input video. The default confidence threshold to output the result is 0.5, adding the argument _-ct {desired-threshold}_ to the app.py
 
+## Requirement
+[Intel Distribution of OpenVINO Toolkit](https://software.intel.com/en-us/openvino-toolkit/choose-download)
 
 ## Instructions
 
